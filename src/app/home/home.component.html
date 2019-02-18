@@ -1,0 +1,30 @@
+<div class="fluid-container">
+  <div class="layout-topbar">
+      <div class="row">
+          <div class="col-md-10">
+              <div style="color:white" class="col-md-3">Angular 5+ SignalR Notifications</div>
+          </div>
+          <div class="col-md-2">
+              <span class="badge badge-danger">{{notification}}</span>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+          <ul>
+              <li *ngFor="let message of messages" class="card my-1">
+                  <div [ngClass]="{'text-right': message.sender == name, 'text-left': message.sender != name }">
+                      <strong> {{ message.sender }} : </strong><span> {{ message.payload }} </span>
+                  </div>
+              </li>
+          </ul>
+          <div class="message-box">
+              <input type="text" [(ngModel)]="name" *ngIf="!isLoggedIn" (keydown)="sendMessage($event)" placeholder="Enter Name"
+                  class="message-input" />
+              <input type="text" [(ngModel)]="msg" *ngIf="isLoggedIn" (keydown)="sendMessage($event)" placeholder="Enter message"
+                  class="message-input" />
+          </div>
+      </div>
+  </div>
+</div>
